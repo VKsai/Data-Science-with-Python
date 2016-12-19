@@ -10,7 +10,7 @@ from sklearn.preprocessing import LabelEncoder
 #Type your data file name replacing <data file name>
 #In this case it is Comma Sepearated Values, it can be other files like 
 #excel file, et cetera.
-data = pd.read_csv('Data.csv');
+data = pd.read_csv('<Data file name>');
 X = data.iloc[:, :-1].values #: is for all elements and -1 is for removing last column
 Y = data.iloc[:, 3].values # [:, :] == [rows, columns]
 
