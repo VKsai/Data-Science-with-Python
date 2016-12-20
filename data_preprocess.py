@@ -5,11 +5,12 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.preprocessing import Imputer
 from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import OneHotEncoder
 
 #READING DATA
 #Type your data file name replacing <data file name>
 #In this case it is Comma Sepearated Values, it can be other files like 
-#excel file, et cetera.
+#excel file, et cetera.     
 data = pd.read_csv('<data file name>');
 X = data.iloc[:, :-1].values #: is for all elements and -1 is for removing last column
 Y = data.iloc[:, 3].values # [:, :] == [rows, columns]
@@ -46,3 +47,11 @@ labelEncoder_variable = LabelEncoder()
 #Next we need to fit that into the matrix X
 X[:, 0] = labelEncoder_variable.fit_transform(X[:, 0])
 
+#Next use of ONEHOTENCODER which will be required in later sections where we will 
+#try to implement SVM and Linear Models such as Linear Regression, Logistic Regression, etc.
+#OneHotEncoder class is imported in line 8.
+oneHotEncoder_object = OneHotEncoder(categorical_features = [0])
+
+#Now we need to fit the object back to our Matrix X containing the Dataset
+#Converting the dataset to array is useful because we can access data by indices
+X = oneHotEncoder_object.fit_transform(X).toarray()
